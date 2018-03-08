@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 import numpy as np
 import h5py
+import pkg_resources
 from scipy.interpolate import interp2d
 
 class FONLL:	# dX/dpT
-	def __init__(self, fname):
+	def __init__(self):
 		self.spectra = {}
 		self.mass = {'c': 1.3, 'b':4.2}
 		self.approx = {"c": lambda pT: pT/(pT**2+7.)**3.,
 		 			   "b": lambda pT: pT/(pT**2+17.)**4.}
+		fname = pkg_resources.resource_filename('fonll', 
+				"data/Initial_Production.hdf5")
 		f = h5py.File(fname, 'r')
 		for nPDF in f.keys():
 			ds0 = f[nPDF]
