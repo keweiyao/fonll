@@ -37,11 +37,11 @@ class FONLL:	# dX/dpT
 		for (pT, y) in zip(pTs, ys):
 			mT = np.sqrt(pT**2 + M**2)
 			if 2.*mT >= float(sqrts):
-				results.append(0.)
+				results.append([0.])
 				continue
 			ymax = np.arccosh(float(sqrts)/2./mT)
 			if np.abs(y)>=ymax:
-				results.append(0.)
+				results.append([0.])
 				continue
 			yn = y/ymax	
 			results.append(self.spectra[nPDF][system][sqrts][specie](pT, yn)\
